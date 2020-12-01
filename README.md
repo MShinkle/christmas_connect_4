@@ -8,7 +8,7 @@ Instead of just running `play()`, you can run `play([test_bot, test_bot])` to ha
 
 **How your bot should work**
 
-Your bot should be a function that takes in the board (a numpy array of 0's where no one has played and either -1 (white) or 1 (black) and which color it is playing (-1 or 1).  It should return a column number from 0-6 of where it would like to play next.  If your bot returns an invalid row, `play()` will ask it again for a new move.
+Your bot should be a function that takes in the board (a numpy array of 0's where no one has played and either -1 (white) or 1 (black)) and which color it is playing (-1 or 1).  It should return a column number from 0-6 of where it would like to play next.  If your bot returns an invalid row, `play()` will ask it again for a new move.
 
 **Tournament**
 
