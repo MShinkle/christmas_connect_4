@@ -1,7 +1,5 @@
 # christmas_connect_4
 
-Hellow,
-
 All the code for actually playing connect 4 is in core_code.py.  To run, copy all of the contents into a jupyter notebook.  If you're using a juypter/colab notebook, you'll want to run `%matplotlib inline` in a cell as well.  To test the code yourself, type and run `play()`.  This will take user input, rather than use a bot.
 
 **How to use with your bot**
