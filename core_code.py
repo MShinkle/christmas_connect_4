@@ -66,6 +66,9 @@ def check_win(board):
             won=True
     return won
 
+def test_bot:
+    return np.random.randint(0,7,1)[0]
+
 def play(bots=None):
     board = np.zeros((6,7))
     player = 1
