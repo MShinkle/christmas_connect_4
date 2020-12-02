@@ -83,7 +83,8 @@ def play(bots=None, display_board=True):
                 move = bots[0](board,player) if player==-1 else bots[1](board,player)
         board[5-np.sum(board[:,move]!=0), move] = player
         player *= -1
-    show_board(board)
+    if display_board:
+        show_board(board)
     if np.sum(board==0) == 0:
         print("It's a Draw!")
         return 0
