@@ -69,17 +69,18 @@ def check_win(board):
 def test_bot(board, player):
     return np.random.randint(0,7,1)[0]
 
-def play(bots=None):
+def play(bots=None, display_board=True):
     board = np.zeros((6,7))
     player = 1
     while not check_win(board):
-        show_board(board)
+        if display_board:
+            show_board(board)
         move = None
         while not check_move(board, move):
-            if isinstance(bots, type(None)):
+            if isinstance(bots, type(None)) or (len(bots)==1 and player==1):
                 move = int(input(f"\n{'Black' if player==1 else 'White'}, choose a column: "))
             else:
-                move = bots[0](board,player) if player==1 else bots[1](board,player)
+                move = bots[0](board,player) if player==-1 else bots[1](board,player)
         board[5-np.sum(board[:,move]!=0), move] = player
         player *= -1
     show_board(board)
