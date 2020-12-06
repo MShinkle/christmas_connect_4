@@ -80,7 +80,7 @@ def play(bots=None, display_board=True):
             if isinstance(bots, type(None)) or (len(bots)==1 and player==1):
                 move = int(input(f"\n{'Black' if player==1 else 'White'}, choose a column: "))
             else:
-                move = bots[0](board,player) if player==-1 else bots[1](board,player)
+                move = bots[0](board.copy(),player) if player==-1 else bots[1](board.copy(),player)
         board[5-np.sum(board[:,move]!=0), move] = player
         player *= -1
     if display_board:
