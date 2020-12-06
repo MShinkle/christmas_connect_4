@@ -66,6 +66,13 @@ def check_win(board):
             won=True
     return won
 
+def return_outcome(board, player):
+    if np.sum(board==0) == 0:
+        return 0
+    else:
+        return player*-1
+    
+
 def test_bot(board, player):
     return np.random.randint(0,7,1)[0]
 
@@ -85,9 +92,9 @@ def play(bots=None, display_board=True):
         player *= -1
     if display_board:
         show_board(board)
-    if np.sum(board==0) == 0:
+    outcome = return_outcome(board, player)
+    if outcome == 0:
         print("It's a Draw!")
-        return 0
     else:
         print('Black' if player!=1 else 'White', "has won!")
-        return player*-1
+    return outcome
