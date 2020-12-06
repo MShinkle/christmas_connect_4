@@ -67,10 +67,12 @@ def check_win(board):
     return won
 
 def return_outcome(board, player):
-    if np.sum(board==0) == 0:
+    if check_win(board):
+        return player*-1
+    elif np.sum(board==0) == 0:
         return 0
     else:
-        return player*-1
+        return None
     
 
 def test_bot(board, player):
