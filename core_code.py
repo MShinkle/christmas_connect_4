@@ -47,24 +47,31 @@ def check_move(board, move):
     if not valid:
         print("Invalid Move!")
     return valid
+
+def init_possible_wins():
+    wins = []
+    for row in range(6):
+        for col in range(7-3):
+            win = np.zeros((1,6,7))
+            win[0,row,col:col+4] = 1
+            wins.append(win)
+    for col in range(7):
+        for row in range(6-3):
+            win = np.zeros((1,6,7))
+            win[0,row:row+4,col] = 1
+            wins.append(win)
+    for diag in diags:
+        win = np.zeros((1,6,7))
+        for spot in diag:
+            win[0,spot[0],spot[1]]=1
+        wins.append(win)
+    wins = np.array(wins)
+    return wins.reshape(wins.shape[0], -1)
+
+possible_wins = init_possible_wins()
     
 def check_win(board):
-    won = False
-    for row in range(board.shape[0]-3):
-        if 4 in np.abs(np.sum(board[row:row+4], axis=0)):
-            won=True
-    for col in range(board.shape[1]-3):
-        if 4 in np.abs(np.sum(board[:,col:col+4], axis=1)):
-            won=True
-    if np.sum(board==0) == 0:
-        won=True
-    for diag in diags:
-        piece_sum = 0
-        for pt in diag:
-            piece_sum += board[pt[0], pt[1]]
-        if abs(piece_sum) == 4:
-            won=True
-    return won
+    return 4 in np.abs(board.reshape(1,-1) @ possible_wins.T)
 
 def return_outcome(board, player):
     if check_win(board):
